@@ -1,89 +1,97 @@
 package com.example.DB_start.controller;
 
-import com.example.DB_start.model.Project;
+import com.example.DB_start.projectDto.ProjectRequestDto;
+import com.example.DB_start.projectDto.ProjectResponseDto;
+import com.example.DB_start.projectDto.ProjectUpdateDto;
 import com.example.DB_start.service.ProjectService;
-import lombok.AllArgsConstructor;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 
 @RestController
 @RequestMapping("/projects")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ProjectController {
 
     private final ProjectService service;
 
     //Сохранение проекта
     @PostMapping
-    public String saveProject(@RequestBody Project project){
-        service.saveProject(project);
-        return "Проект успешно сохранен!";
+    public ResponseEntity<ProjectResponseDto> save(@Valid @RequestBody ProjectRequestDto dto){
+        ProjectResponseDto saved = service.save(dto);
+        return ResponseEntity.created(URI.create("/projects/" + saved.id())).body(saved);
     }
 
     //Поиск всех проектов
     @GetMapping
-    public List<Project> findAllProjects(){
-        return service.findAllProjects();
+    public ResponseEntity<List<ProjectResponseDto>> findAll(){
+        List<ProjectResponseDto> projects = service.findAll();
+        return ResponseEntity.ok(projects);
     }
 
     //Постраничный поиск всех проектов
     @GetMapping("/page")
-    public Page<Project> findAllWithPagination(@RequestParam(defaultValue = "0") int page,
-                                               @RequestParam(defaultValue = "5") int size){
-        return service.findAllWithPagination(page, size);
+    public ResponseEntity<Page<ProjectResponseDto>> findAllWithPagination(@RequestParam(defaultValue = "0") int page,
+                                                                          @RequestParam(defaultValue = "5") int size){
+        Page<ProjectResponseDto> projects = service.findAllWithPagination(page, size);
+        return ResponseEntity.ok(projects);
     }
 
     //Поиск по дате изменения
     @GetMapping("/updated")
-    public List<Project> findByUpdatedAt(@RequestParam LocalDate updatedAt){
-        return service.findByUpdatedAt(updatedAt);
+    public ResponseEntity<List<ProjectResponseDto>> findByUpdatedAt(@RequestParam LocalDate updatedAt){
+        List<ProjectResponseDto> projects = service.findByUpdatedAt(updatedAt);
+        return ResponseEntity.ok(projects);
     }
 
     //Поиск по id
     @GetMapping("/{id}")
-    public Project findById(@PathVariable Long id){
-        return service.findById(id);
+    public ResponseEntity<ProjectResponseDto> findById(@PathVariable Long id){
+        ProjectResponseDto project = service.findById(id);
+        return ResponseEntity.ok(project);
     }
 
     //Поиск по статусу
     @GetMapping("/completed")
-    public List<Project> findByCompleted(@RequestParam(defaultValue = "false") boolean completed){
-        return service.findByCompleted(completed);
+    public ResponseEntity<List<ProjectResponseDto>> findByCompleted(@RequestParam(defaultValue = "false") Boolean completed){
+        List<ProjectResponseDto> projects = service.findByCompleted(completed);
+        return ResponseEntity.ok(projects);
     }
 
     //Поиск по описанию или названию
     @GetMapping("/search")
-    public List<Project> findByKeyword(@RequestParam String keyword){
-        return service.findByKeyword(keyword);
+    public ResponseEntity<List<ProjectResponseDto>> findByKeyword(@RequestParam String keyword){
+        List<ProjectResponseDto> projects = service.findByKeyword(keyword);
+        return ResponseEntity.ok(projects);
     }
 
     //Поиск по дате создания
     @GetMapping("/created")
-    public List<Project> findByCreatedAt(@RequestParam LocalDate createdAt){
-        return service.findByCreatedAt(createdAt);
+    public ResponseEntity<List<ProjectResponseDto>> findByCreatedAt(@RequestParam LocalDate createdAt){
+        List<ProjectResponseDto> projects = service.findByCreatedAt(createdAt);
+        return ResponseEntity.ok(projects);
     }
 
     //Частичное обновление проекта
     @PatchMapping("/{id}")
-    public String updateProject(@PathVariable Long id,
-            @RequestBody Project project){
-        project.setId(id);
+    public ResponseEntity<ProjectResponseDto> update(@PathVariable Long id,
+                                                            @RequestBody ProjectUpdateDto project){
+        ProjectResponseDto dto = service.update(id, project);
 
-        return service.updateProject(project)
-                ? "Проект успешно обновлен"
-                : "Проект с данным id не найден";
+        return ResponseEntity.ok(dto);
     }
 
     //Удаление проекта
     @DeleteMapping("/{id}")
-    public String deleteProject(@PathVariable Long id){
-        if(service.deleteProject(id))
-            return "Проект успешно удален!";
-        else
-            return "Проект с данным id не найден!";
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

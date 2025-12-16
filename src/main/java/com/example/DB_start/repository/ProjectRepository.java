@@ -8,12 +8,16 @@ import java.util.List;
 
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 
+    // Поиск проектов, у которых название или описание содержит заданную подстроку (без учета регистра)
     List<Project> findByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String name, String description);
 
+    //Поиск по статусу
     List<Project> findByCompleted(boolean completed);
 
-    List<Project> findByCreatedAt(LocalDate ceratedAt);
+    //Поиск по дате создания
+    List<Project> findByCreatedAt(LocalDate createdAt);
 
+    //Поиск по дате обновления
     List<Project> findByUpdatedAt(LocalDate updatedAt);
 
 }
