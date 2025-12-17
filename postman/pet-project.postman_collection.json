@@ -1,0 +1,560 @@
+{
+	"info": {
+		"_postman_id": "8414f7c8-7cee-4def-b76d-4b8cbaa12eab",
+		"name": "pet-project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49272034",
+		"_collection_link": "https://dromanov397-3943729.postman.co/workspace/%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9-%D0%A0%D0%BE%D0%BC%D0%B0%D0%BD%D0%BE%D0%B2's-Workspace~5e89e141-4558-4a19-8fd5-958a10e5fdc6/collection/49272034-8414f7c8-7cee-4def-b76d-4b8cbaa12eab?action=share&source=collection_link&creator=49272034"
+	},
+	"item": [
+		{
+			"name": "projects",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomWord}}\",\r\n    \"description\": \"{{$randomWords}}\",\r\n    \"completed\": \"false\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find with pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projects/page",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								"page"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projects/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by comleted",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projects/completed?completed=false",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								"completed"
+							],
+							"query": [
+								{
+									"key": "completed",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by keyword",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projects/search?keyword=cu",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								"search"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "cu"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by createdAt",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projects/created?createdAt=2025-12-07",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								"created"
+							],
+							"query": [
+								{
+									"key": "createdAt",
+									"value": "2025-12-07"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by updatedAt",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projects/updated?updatedAt=2025-12-07",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								"updated"
+							],
+							"query": [
+								{
+									"key": "updatedAt",
+									"value": "2025-12-07"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomWord}}\",\r\n    \"description\": \"{{$randomWords}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/projects/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomWord}}\",\r\n    \"description\": \"{{$randomWords}}\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/projects/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projects",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tasks",
+			"item": [
+				{
+					"name": "find all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/tasks",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tasks/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{$randomWord}}\",\r\n    \"description\": \"{{$randomWords}}\",\r\n    \"status\": \"BLOCKED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tasks?projectId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "projectId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by projectId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tasks/project?projectId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tasks",
+								"project"
+							],
+							"query": [
+								{
+									"key": "projectId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by createdAt",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tasks/created?createdAt=2025-12-07",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tasks",
+								"created"
+							],
+							"query": [
+								{
+									"key": "createdAt",
+									"value": "2025-12-07"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by updatedAt",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tasks/updated?updatedAt=2025-12-07",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tasks",
+								"updated"
+							],
+							"query": [
+								{
+									"key": "updatedAt",
+									"value": "2025-12-07"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{$randomWord}}\",\r\n    \"description\": \"{{$randomWords}}\",\r\n    \"status\": \"BLOCKED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/tasks/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/tasks/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tasks",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/tasks/status?status=TODO",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tasks",
+								"status"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "TODO"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by keyword",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/tasks/keyword?keyword=co",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tasks",
+								"keyword"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "co"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find with pagination",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/tasks/page",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tasks",
+								"page"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
