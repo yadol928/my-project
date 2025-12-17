@@ -2,9 +2,9 @@ spring:
   application:
     name: projects
   datasource:
-    url: jdbc:postgresql://localhost:5432/ProjectsAndTasks
-    username: postgres
-    password: 153698742
+    url: ${URL}
+    username: ${USERNAME}
+    password: ${PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
