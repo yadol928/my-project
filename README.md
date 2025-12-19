@@ -50,10 +50,11 @@
 - `set DB_PASSWORD=postgres`
 - `docker compose up --build`
 
-**`DB_URL`** — JDBC URL для подключения к PostgreSQL
-**`DB_URL_DOCKER`** — JDBC URL для подключения к PostgreSQL в Docker (localhost -> db)
-**`DB_USERNAME`** — имя пользователя PostgreSQL
-**`DB_PASSWORD`** — пароль пользователя PostgreSQL
+,где
+- **`DB_URL`** — JDBC URL для подключения к PostgreSQL
+- **`DB_URL_DOCKER`** — JDBC URL для подключения к PostgreSQL в Docker (localhost -> db)
+- **`DB_USERNAME`** — имя пользователя PostgreSQL
+- **`DB_PASSWORD`** — пароль пользователя PostgreSQL
 
 **PowerShell:**
 - `$env:DB_URL="jdbc:postgresql://db:5432/ProjectsAndTasks"`
