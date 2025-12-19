@@ -1,0 +1,14 @@
+target/
+.mvn/
+.m2/
+.idea/
+*.iml
+.git/
+.gitignore
+README.md
+postman/
+*.log
+.env
+.env.local
+.DS_Store
+Thumbs.db
